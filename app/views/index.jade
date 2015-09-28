@@ -1,13 +1,14 @@
 extends layout
+block css
+  link(href='/css/th.css' rel='stylesheet')
 block content
   .pageOne
     .inner
       a(href='enter') Enter
+      break
       a(href='login') Login
-      .three#THREE 
+    .three#THREE 
   script(src='//cdnjs.cloudflare.com/ajax/libs/three.js/r72/three.min.js')
   script(src='components/angular/angular.min.js')
   script(src='js/th/config.b.js')
-  script(src='js/th/Scene.js')
-  script(src='js/th/th.main.js')
   

@@ -41,26 +41,14 @@ function __isAuthenticated (req, res, next) {
     }
 
 }
-function __logout(req, res) {
-  //logout here
-  console.log('__logout')
-  res.redirect('/')
-}
 
 
 
 function __authenticate_User (req, res, next) {
-  console.log('__authenticate_User')
-  next()
-
-  //   User.findOne({ username: username }, function (err, user) {
-  //     if(!e) {
-//        console.log('User: ' + user.username + ' --login')
-
-//      }else {
-//          throw new Error(err)
-//      }
-  //   });
-
-
+  
+}
+function __logout(req, res) {
+  //logout here
+  console.log('__logout')
+  res.redirect('/')
 }

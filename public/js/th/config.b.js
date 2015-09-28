@@ -11,26 +11,23 @@ window.addEventListener('resize', function () {
 document.getElementById('THREE').appendChild(renderer.domElement)
 var icogeometry = new THREE.IcosahedronGeometry(1);
 var icomaterial = new THREE.MeshDepthMaterial({
-    color: 0x00ff00,
-    morphTargets: false,
-    wireframe: true,
-    wireframeLineWidth: 1
+    wireframe: true
+
 });
 var ico = new THREE.Mesh(icogeometry, icomaterial);
 
 var knotGeo = new THREE.TorusKnotGeometry(5, 1, 100, 16);
 var knotMat = new THREE.MeshDepthMaterial({
-    color: 0xdddddd,
     morphTargets: false,
-    wireframe: false,
-    wireframeLineWidth: 1
+    wireframe: false
+
 });
 var knotMatB = new THREE.MeshPhongMaterial({
     color: 0xdddddd,
     specular: 0x009900,
     shininess: 30,
     shading: THREE.FlatShading,
-    wirefram: true
+    wireframe: true
 
 });
 var knot = new THREE.Mesh(knotGeo, knotMat);

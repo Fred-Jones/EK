@@ -15,7 +15,7 @@ Scene.prototype.render = function () {
   this.animations = []
 
 }
-Scene.prototype.animate() {
+Scene.prototype.animate = function() {
     for(var i = 0; i<animations.length; i++) {
       //loop over [animations] and apply the update
     }
