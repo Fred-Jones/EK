@@ -1,11 +1,14 @@
-console.log('before main', document.body, document.getElementById('THREE'))
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
+window.addEventListener('resize', function () {
+  renderer.setSize(window.innerWidth, window.innerHeight)
+  camera.aspect = (window.innerWidth/window.innerHeight)
+  camera.updateProjectionMatrix()
+})
 document.getElementById('THREE').appendChild(renderer.domElement)
-
 var icogeometry = new THREE.IcosahedronGeometry(1);
 var icomaterial = new THREE.MeshDepthMaterial({
     color: 0x00ff00,
@@ -36,17 +39,17 @@ scene.add(knot);
 
 camera.position.z = 5;
 
+render();
+
 function render() {
     requestAnimationFrame(render);
-
-    ico.rotation.x += 0.01;
-    ico.rotation.y += 0.01;
-    knot.rotation.x += 0.01;
-    knot.rotation.y += 0.01;
-
     renderer.render(scene, camera);
-
+    animate()
 }
 
-render();
-console.log(renderer.domElement)
+function animate() {
+  ico.rotation.x += 0.005;
+  ico.rotation.y += 0.005;
+  knot.rotation.x += 0.005;
+  knot.rotation.y += 0.005;
+}
