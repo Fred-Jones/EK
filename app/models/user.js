@@ -4,6 +4,8 @@ var userSchema = new Schema({
   username: String,
   email: String,
   password: String,
-  id: Number
+  profile: {
+    profpic: String
+  }
 })
 module.exports = mongoose.model('User', userSchema)

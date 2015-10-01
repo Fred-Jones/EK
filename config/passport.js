@@ -27,6 +27,9 @@ module.exports = function (app) {
   app.isAuthenticated = __isAuthenticated
   app.login = __authenticate_User
   app.logout = __logout
+  //callback midware
+  app.localCB = __localCallback
+  app.openIdCB = __openIdCallback
 
 }
 function __isAuthenticated (req, res, next) {
@@ -45,10 +48,13 @@ function __isAuthenticated (req, res, next) {
 
 
 function __authenticate_User (req, res, next) {
-  
+
 }
 function __logout(req, res) {
   //logout here
   console.log('__logout')
   res.redirect('/')
 }
+function __localCallback
+function __twitterCallback
+function __openIdCallback

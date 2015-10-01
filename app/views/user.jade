@@ -1,4 +1,9 @@
 extends layout
 block content
-  .helle User
+  .page
+    .block
+      img(id='profpic')
+      div#userinfo
+        #{userinfo} #{userinfo.username} #{userinfo.email}
+    .block 
   block js
