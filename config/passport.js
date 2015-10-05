@@ -1,60 +1,50 @@
-var passport = require('passport'),
-LocalStrategy = require('passport-local')
+var passport = require('passport');
 var User = require('../app/models/user.js')
 var userSemilla = require('../app/models/user.semilla.js')('ElDon', 'LaContrasena', 'mmaammbbuu@gmail.com')
 // userSemilla('ElDon', 'LaContrasena', 'mmaammbbuu@gmail.com')
 
-passport.use(new LocalStrategy(
-  //consider replacement with [app]__authenticate_User
-    function(username, password, done) {
-      User.findOne({ username: username }, function (err, user) {
-        if (err) { return done(err); }
-        if (!user) {
-          return done(null, false, { message: 'Incorrect username.' });
-        }
-        if (!user.validPassword(password)) {
-          return done(null, false, { message: 'Incorrect password.' });
-        }
-        return done(null, user);
-      });
-    }
-));
-
-
+var strategies = require('./strategies.js')
+strategies.forEach(function(s) { passport.use(s.name, s);})
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
 
 module.exports = function (app) {
-  // app.authenticateUser = passport.authenticate('local')//__authenticate_User
+  app.login = __login
   app.isAuthenticated = __isAuthenticated
-  app.login = __authenticate_User
   app.logout = __logout
-  //callback midware
-  app.localCB = __localCallback
-  app.openIdCB = __openIdCallback
-
-}
-function __isAuthenticated (req, res, next) {
-  //User.findOne({username:req.username, password: req.password}, function() {})
-    if(true) {
-        console.log('__isAuthenticated')
-        return next();
-
-    } else {
-        console.log('redirect')
-        res.redirect('/');
-    }
-
 }
 
-
-
-function __authenticate_User (req, res, next) {
-
+function __login(req, res, next) {
+  passport.authenticate(req.body.authtype, {
+    session: true
+  }, function(err, user) {
+    if (err) { return next(err); }
+    if (!user) { return res.redirect('/login'); }
+    req.logIn(user, function(err) {
+      if(err) {return next(err)}
+      console.log('Authorized user ', user)
+      res.redirect('/user')
+    });
+  })(req, res, next);
 }
+
+function __isAuthenticated(req, res, next) {
+  console.log('User authed? ', req.isAuthenticated())
+  if(!req.isAuthenticated()) {
+    res.redirect('/login')
+    return
+  }
+  next()
+}
+
 function __logout(req, res) {
-  //logout here
-  console.log('__logout')
+  console.log('__logout ', req.username)
+  req.logout()
   res.redirect('/')
 }
-function __localCallback
-function __twitterCallback
-function __openIdCallback

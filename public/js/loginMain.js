@@ -5,12 +5,15 @@
 // })
 $(document).ready(main)
 function main() {
-  var $submit = $('#submitButton')
+  var $submit = $('#submitButton');
     $submit.on('click', function(e) {
       e.preventDefault()
-      $.post(window.location.href, function(a,b) {
-        console.log('Handled post:\n', a, b)
+      $.post(window.location.href,{
+        authtype: 'local',
+        username: $('#username').val(),
+        password: $('#password').val()
       })
+    });
       // $.ajax({
       //   method: 'POST',
       //   url: 'login',
@@ -25,5 +28,4 @@ function main() {
       //
       // })
 
-    })
 }

@@ -1,18 +1,11 @@
-var express = require('express')
-var r = express.Router()
-var pport = require('../../config/passport.js')
 
 module.exports = function(app) {
-    app.use('/', r)
-    r.get('/login', function(req, res, next) {
+    app.get('/login', function(req, res, next) {
       res.render('login')
     })
-    r.post('/login', app.login, function (req, res, next) {
-      res.render('user')
-
+    app.post('/login', app.login, function (req, res) {
+      console.log('redir /user', user)
+      res.redirect('/user')
     })
-    r.get('/logout', app.logout, function(req, res, next){
-      res.end('logout')
-    })
-
-  };
+    app.get('/logout', app.logout)
+};

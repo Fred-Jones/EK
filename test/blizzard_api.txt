@@ -1,0 +1,13 @@
+http://dev.battle.net
+http://localhost:3000/
+http://localhost:3000/callbac
+
+
+Application Registered!
+GAME APIS: BASIC PLAN
+Key: h2v4wquqcvzzqghtg7guj6e2x3ydamxw
+
+ApplicationEK
+	Key: h2v4wquqcvzzqghtg7guj6e2x3ydamxw
+	Secret: qDxzNMA9UEUnnQpAkcgtPtK7TatFnK9Z
+Status: active Created: 4 seconds ago

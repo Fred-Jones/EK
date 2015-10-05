@@ -34,8 +34,8 @@ module.exports = function(app, config) {
 //apply authentication strategies
   app.use(session({secret: 'yoot', saveUninitialized: true, resave:true}));
   app.use(passport.initialize());
-  passport_midWare(app);
   app.use(passport.session());
+  passport_midWare(app);
   var controllers = glob.sync(config.root + '/app/controllers/*.js');
   controllers.forEach(function (controller) {
     require(controller)(app);
